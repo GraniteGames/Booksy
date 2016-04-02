@@ -1,0 +1,117 @@
+/* CSS declarations go here */
+body{
+  padding-top:70px;
+}
+/*NAVBAR STYLES*/
+.navbar-dark{
+  background-color: #64ec6f;
+  border-bottom:none;
+}
+.navbar-header button{
+  background-color: white;
+}
+.navbar-header .icon-bar{
+  background-color:#64ec6f;
+}
+.navbar-brand{
+  color:white;
+  font-size:20px;
+}
+#navbar a{
+  color:white;
+  font-size:20px;
+  font-weight: bold;
+  margin:0;
+  height:100%;
+  padding-top:20px;
+}
+#navbar a:active{
+  background-color:#009900;
+  color:black;
+}
+#navbar a:focus{
+  background-color:#009900;
+  color:black;
+}
+
+#navbar a:hover{
+  background-color:#009900;
+  color:black;
+}
+/*Home Page Styles*/
+.mainPageLogo{
+  text-align:center;
+  color:#64ec6f;
+  font-size:30px;
+}
+.mainPageSlogan{
+  text-align:center;
+  padding-top:15px;
+  font-size:20px;
+
+}
+.descriptionOfService{
+  padding-top:30px;
+}
+.testimonials{
+  padding-top: 30px;
+  text-align:center;
+
+}
+.toFind{
+}
+.toPost{
+
+}
+/*Find/Post Page Styles*/
+.divideMe{
+  background-color:#64ec6f;
+}
+.submitButtonStyle{
+  background-color:#64ec6f;
+  border:1px solid gray;
+  font-size:22px;
+  color:white;
+  padding:10px;
+  border-radius:10px;
+}
+/*Result page styles*/
+.tableHead{
+  background-color:#64ec6f;
+  color:white;
+  font-size:20px;
+}
+.tableInstructions{
+  text-align:center;
+  padding-bottom:10px;
+}
+.tableResults{
+  font-weight:bold;
+  border-bottom:1px solid #e6e6e6;
+}
+/*Thanks Styles*/
+
+.thanksMessage{
+  text-align: center;
+  padding-top:50px;
+}
+.thanksMessage h3{
+  padding-bottom:30px;
+}
+.backToHome:hover{
+  background-color:white;
+  color:black;
+}
+.navbar-brand{
+  width:200px;
+  height:60px;
+  padding:0;
+
+}
+.navbar-brand img{
+    width:100%;
+    height:100%;
+}
+.nav li{
+  height:60px;
+}

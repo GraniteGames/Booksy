@@ -1,0 +1,56 @@
+<template name="postBookPage">
+  <div class="container">
+    <h3>Fill in the info for the book you want to sell. The more accurate info you add, the better chance your book has to be found by fellow students!</h3>
+    <hr class="divideMe">
+
+    <!-- This Form is for Posting books!-->
+  <form class="postInputGroup">
+    <fieldset class="form-group">
+    <label for="regionSelect">Select your Region</label>
+    <select class="form-control" id="regionSelect" name="regionSel">
+      <option>Halifax Region (Dalhousie, SMU, MSVU)</option>
+      <option>Prince Edward Island (UPEI)</option>
+      <option>Nova Scotia South (Acadia)</option>
+      <option>Nova Scotia North (ST.FX CBU)</option>
+      <option>New Brunswick (Moncton)</option>
+      <option>New Brunswick (UNB Fredericton, ST Thomas)</option>
+    </select>
+    <small class="text-muted">Required field</small>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="emailInput">Enter Your E-mail</label>
+      <input type="email" class="form-control" id="emailInput" placeholder="Your E-mail" name="email">
+      <small class="text-muted">e.g yourname@gmail.com</small>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="bookTitleInput">Book Title</label>
+      <input type="text" class="form-control" id="bookTitleInput" placeholder="Book Title Here" name="bookTitle">
+      <small class="text-muted">e.g Canadian History: A Birth of a Nation</small>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="bookAuthorInput">Book Author</label>
+      <input type="text" class="form-control" id="bookAuthorInput" placeholder="Book Author Here" name="bookAuthor">
+      <small class="text-muted">e.g Larvus Gallant</small>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="isbnInput">ISBN Number</label>
+      <input type="text" class="form-control" id="isbnInput" placeholder="Book Title Here" name="isbn">
+      <small class="text-muted">Be as accurate as possible for best results</small>
+    </fieldset>
+    <fieldset class="form-group">
+    <label for="tagSelect">Add Subject Tag (Optional)</label>
+    <select  class="form-control" id="tagSelect" name="tag">
+      <option>None</option>
+      <option>English</option>
+      <option>History</option>
+      <option>Mathematics</option>
+      <option>Engineering</option>
+      <option>Music</option>
+      <option>Geography</option>
+    </select>
+    <small class="text-muted">Enables you to search by subject</small>
+    </fieldset>
+    <input type="submit" id="submit" class="pull-right submitButtonStyle">
+  </form>
+  </div>
+</template>

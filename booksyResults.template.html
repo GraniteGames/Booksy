@@ -1,0 +1,48 @@
+<template name="resultsPage">
+
+  <div class="tableInstructions">
+    <h3>Click the "Contact" button to get in touch with the seller!</h3>
+  </div>
+
+  <div class="table-responsive">
+  <h2>Your Results</h2>
+  <table class="table"> <!--This Table is for exact Matches-->
+    <tr class="tableHead">
+      <th>Title</th>
+      <th>Author</th>
+      <th>ISBN</th>
+      <th>Date Posted</th>
+      <th>Contact</th>
+    </tr>
+        {{#each booksSR}}
+          {{> resultPop}}
+        {{/each}}
+    </table>
+    <h2>These books may also interest you </h2>
+    <table class="table">
+      <tr class="tableHead">
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Date Posted</th>
+        <th>Contact</th>
+      </tr>
+      <tr>
+        {{#each booksRelated}}
+          {{> resultPop}}
+        {{/each}}
+      </tr>
+    </table>
+</div>
+
+
+</template>
+<template name="resultPop">
+  <tr class="tableResults">
+    <td>{{bookTitle}}</td>
+    <td>{{bookAuthor}}</td>
+    <td>{{isbn}}</td>
+    <td>{{dateCreated}}</td>
+    <td>Modal Pop</td> <!-- This will pop a modal for the seller to input email-->
+  </tr>
+</template>

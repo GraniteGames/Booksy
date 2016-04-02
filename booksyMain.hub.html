@@ -1,0 +1,28 @@
+<head>
+  <title>Booksy</title>
+</head>
+<template name="main">
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-dark navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{pathFor route='home'}}"><img class="img-responsive navImg" src="img/BooksyLogoNav.png" alt="Booksy Logo"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li data-page="home"><a href="{{pathFor route='home'}}">Home</a></li> <!-- Put {{active}} class changer here on each link. It will display as active depending on the current display-->
+            <li data-page="findBooks"><a href="{{pathFor route='find'}}">Find Books</a></li>
+			      <li data-page="postBooks"><a href="{{pathFor route='post'}}">Post a Book</a></li>
+            <li data-page="about"><a href="{{pathFor route='about'}}">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+{{> yield}}
+</template>

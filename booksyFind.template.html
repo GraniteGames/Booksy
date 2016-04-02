@@ -1,0 +1,49 @@
+<template name="findBookPage">
+  <div class="container">
+  <h3> Fill in some info on the book you would like to find. You can be as specific or as vague as you'd like. If you only enter your region(mandatory),
+    you will be shown all of the books listed in that region.</h3>
+  <form class="findInputGroup">
+    <fieldset class="form-group">
+    <label for="regionSelect">Select your Region</label>
+    <select class="form-control" id="regionSelect" name="regionSel">
+      <option>Halifax Region (Dalhousie, SMU, MSVU)</option>
+      <option>Prince Edward Island (UPEI)</option>
+      <option>Nova Scotia South (Acadia)</option>
+      <option>Nova Scotia North (ST.FX CBU)</option>
+      <option>New Brunswick (Moncton)</option>
+      <option>New Brunswick (UNB Fredericton, ST Thomas)</option>
+    </select>
+    <small class="text-muted">Required field</small>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="bookTitleInput">Book Title</label>
+      <input type="text" class="form-control" id="bookTitleInput" placeholder="Book Title Here" name="bookTitle">
+      <small class="text-muted">e.g Canadian History: A Birth of a Nation</small>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="bookAuthorInput">Book Author</label>
+      <input type="text" class="form-control" id="bookAuthorInput" placeholder="Book Author Here" name="bookAuthor">
+      <small class="text-muted">e.g Larvus Gallant</small>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="isbnInput">ISBN Number</label>
+      <input type="text" class="form-control" id="isbnInput" placeholder="Book Title Here" name="isbn">
+      <small class="text-muted">Be as accurate as possible for best results</small>
+    </fieldset>
+    <fieldset class="form-group">
+    <label for="tagSelect">Add Subject Tag</label>
+    <select class="form-control" id="tagSelect" name="tag">
+      <option>None</option>
+      <option>English</option>
+      <option>History</option>
+      <option>Mathematics</option>
+      <option>Engineering</option>
+      <option>Music</option>
+      <option>Geography</option>
+    </select>
+    <small class="text-muted">Enables you to search by subject</small>
+    </fieldset>
+    <input type="submit" value="Search" class="pull-right submitButtonStyle">
+  </form>
+  </div>
+</template>
