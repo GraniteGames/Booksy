@@ -69,6 +69,11 @@ Template.resultsPage.helpers({
    //Search Algorithm:
       subjectTag: Session.get('subjectTag')
     });
+    "click .toPost": function(event,template)
+    {
+      event.preventDefault();
+      var sellerID = this.getAttribute('data-book-identifier');
+    }
 
    //Search algorithm using the Session variable set in FIND
    console.log("resultsHelper")
@@ -155,6 +160,7 @@ Template.findBookPage.events({
         subjectTag: tagFind,
         region: regionFind,
         dateCreated: new Date(),
+        documentId : _id,
         results:'specific'
       });
     }
