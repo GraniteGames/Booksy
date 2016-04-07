@@ -69,16 +69,74 @@ Template.resultsPage.helpers({
    //Search Algorithm:
       subjectTag: Session.get('subjectTag')
     });
-    "click .toPost": function(event,template)
+    },
+
+
+  });
+  Template.resultPop.helpers({
+
+    sellerSession: function(name){
+        return Session.get(name);
+      }
+  });
+
+  Template.resultPop.events({
+    "click .buyerSubmit": function(event, template)
     {
       event.preventDefault();
-      var sellerID = this.getAttribute('data-book-identifier');
+      //Get Seller Email
+      var sellerEmail = Session.get("currentSellerEmail");
+      var sellerEmail = sellerEmail.toString();
+      //Get buyer email
+      var buyerEmail = $('#buyerEmail').val();
+      var buyerEmail = buyerEmail.toString();
+      //Get Buyer Message
+      var buyerText = $('#emailContent').val()
+      var buyerText = buyerText.toString();
+      var emailTitle = 'Booksy: Reply to your ad for: ' + Session.get("sellerTitle");
+      // Call email method
+      Meteor.call('sendEmail',sellerEmail, buyerEmail,emailTitle,buyerText);
+      //Switch up modal message
+      $('.buyerSubmit').hide();
+      $('.fg2').hide();
+      $('.fg1').hide();
+      $('.modal-body').append('<p>Thanks for using Booksy!</p>');
+      console.log("Email Sent");
+    },
+    "click .modalClose": function(event, template)
+    {
+      event.preventDefault();
+      $('.modal-body').remove('p')
+      $('.buyerSubmit').show();
+      $('.fg1').show();
+      $('.fg2').show();
+      $('.textMessage').val('');
     }
 
-   //Search algorithm using the Session variable set in FIND
-   console.log("resultsHelper")
-  }
+  })
+
+  Template.resultsPage.events({
+    "click .toContact": function(event,template)
+    {
+      event.preventDefault();
+      var sellerID = event.currentTarget.dataset.id;
+      console.log("seller id logged");
+      console.log(sellerID);
+      var sellerData = BooksList.findOne({ _id : sellerID});
+      console.log(sellerData.bookTitle);
+      Session.set({
+        sellerTitle: sellerData.bookTitle,
+        sellerAuthor: sellerData.bookAuthor,
+        sellerIsbn : sellerData.isbn,
+        sellerRegion: sellerData.region,
+        sellerDatePosted: sellerData.dateCreated,
+        currentSellerEmail: sellerData.sellerEmail
+      });
+
+    }
+
   });
+
 
 Template.finished.events({
   "click .backToHome": function (event, template)
@@ -160,7 +218,6 @@ Template.findBookPage.events({
         subjectTag: tagFind,
         region: regionFind,
         dateCreated: new Date(),
-        documentId : _id,
         results:'specific'
       });
     }
@@ -183,12 +240,24 @@ addBook: function  (regionPost, isbnPost, titlePost, authorPost, tagPost, emailP
     region: regionPost,
     dateCreated: new Date()
   });
+},
+sendEmail: function (to,fr,subject,text){
+  check([to, fr, subject, text], [String]);
+
+  this.unblock();
+
+  Email.send({
+    to:to,
+    from:fr,
+    subject: subject,
+    text: text
+  });
 }
 
 
-})
+});
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
+   process.env.MAIL_URL="smtp://postmaster@sandbox017d063d7d684ed5af85afc1b622a6c0.mailgun.org:548426b1d23a17500b5e117414700ad2@smtp.mailgun.org:587/";
   });
 }

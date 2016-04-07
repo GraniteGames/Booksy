@@ -26,16 +26,16 @@ body{
   padding-top:20px;
 }
 #navbar a:active{
-  background-color:#009900;
+  background-color:white;
   color:black;
 }
 #navbar a:focus{
-  background-color:#009900;
+  background-color:white;
   color:black;
 }
 
 #navbar a:hover{
-  background-color:#009900;
+  background-color:white;
   color:black;
 }
 /*Home Page Styles*/

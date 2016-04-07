@@ -13,6 +13,7 @@
       <th>ISBN</th>
       <th>Subject</th>
       <th>Date Posted</th>
+      <th>DocumentID</th>
       <th>Contact</th>
     </tr>
         {{#each booksSR}}
@@ -27,6 +28,7 @@
         <th>ISBN</th>
         <th>Subject</th>
         <th>Date Posted</th>
+        <th>document ID</th>
         <th>Contact</th>
       </tr>
       <tr>
@@ -46,11 +48,12 @@
     <td>{{isbn}}</td>
     <td>{{subjectTag}}</td>
     <td>{{dateCreated}}</td>
-    <td><button type="button" class="btn btn-info btn-lg toContact" data-toggle="modal" data-target="#myModal" data-book-identifier="{{documentId}}">Contact Seller</button></td> <!-- This will pop a modal for the seller to input email-->
+    <td>{{_id}}</td>
+    <td><button type="button" class="btn btn-info toContact" data-toggle="modal" data-target="#myModal" data-id="{{_id}}">Contact Seller</button></td> <!-- This will pop a modal for the seller to input email-->
   </tr>
 
   <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+  <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -60,13 +63,29 @@
         <h4 class="modal-title">Contact Seller</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <ul>
+          <li>Book Title:{{sellerSession "sellerTitle"}}</li>
+          <li>Book Author:{{sellerSession "sellerAuthor"}} </li>
+          <li>ISBN:{{sellerSession "sellerIsbn"}}</li>
+        </ul>
+        <fieldset class="form-group fg1">
+          <label for="buyerEmail">Enter Your Email</label>
+          <input type="email" class="form-control" id="buyerEmail" placeholder="Example@example.com" name="buyerEmailId">
+          <small class="text-muted">The seller will be able to contact you with a reply</small>
+        </fieldset>
+        <fieldset class="form-group fg2">
+            <label for="emailContent">Enter a Message </label>
+            <textarea class="form-control textMessage" id="emailContent" placeholder="Type your message here" name="buyerMessage" rows="4"></textarea>
+            <small class="text-muted">The seller will be able to contact you with a reply</small>
+        </fieldset>
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" value="Send Email" class=" btn btn-primary buyerSubmit">
+        <button type="button" class="btn btn-default modalClose" data-dismiss='modal'>Close</button>
       </div>
     </div>
 
   </div>
-</div>
+  </div>
 </template>
