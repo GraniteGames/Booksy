@@ -16,7 +16,7 @@
       <option>New Brunswick (UNB Fredericton, ST Thomas)</option>
       <option>Greater Toronto Area (UofT, York University etc.)</option>
     </select>
-    <small class="text-muted">Required field</small>
+    <small class="text-muted">*Required field</small>
     </fieldset>
     <fieldset class="form-group">
       <label for="emailInput">Enter Your E-mail</label>
@@ -32,6 +32,17 @@
       <label for="bookAuthorInput">Book Author</label>
       <input type="text" class="form-control" id="bookAuthorInput" placeholder="Book Author Here" name="bookAuthor" required>
       <small class="text-muted">e.g Larvus Gallant (*Required)</small>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="selectFile">Image</label>
+      <input type="file" class="uploadFile" id="uploadFile">
+      <p class="help-block">Upload a photo of your book here.</p>
+      <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+            <span class="sr-only">{{progress}}% Complete</span>
+            {{isUploading}}
+          </div>
+        </div>
     </fieldset>
     <fieldset class="form-group">
       <label for="isbnInput">ISBN Number</label>

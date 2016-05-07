@@ -21,6 +21,7 @@ deps@1.0.11
 diff-sequence@1.0.4
 ecmascript@0.4.2
 ecmascript-runtime@0.2.9
+edgee:slingshot@0.7.1
 ejson@1.0.10
 email@1.0.11
 es5-shim@4.5.9

@@ -29,8 +29,12 @@ Router.configure({
 });
 //END Routing
 
-//var pageEnum = Object.freeze({"Home":1, "Find":2, "Post":3, "Results":4, "About":5, "Thanks:":6 })
+//Globals
 BooksList = new Mongo.Collection("books");
+/*var uploader = new ReactiveVar();
+var imageDetails = new Mongo.Collection('images'); ///NEED TO ADJUST
+var currentUserId = Meteor.userId(); //NEED TO ADJUST */
+
 if (Meteor.isClient) {
 Template.body.onRendered( function() {
 
@@ -188,8 +192,52 @@ Template.postBookPage.events({
 
     Router.go('/thanks');
     console.log("thanks page Displayed");
-  }
+  },
+  /*'change .uploadFile': function(event, template) {
+
+             event.preventDefault();
+
+             var upload = new Slingshot.Upload("myImageUploads");
+             var timeStamp = Math.floor(Date.now());
+         upload.send(document.getElementById('uploadFile').files[0], function (error, downloadUrl) {
+             uploader.set();
+             if (error) {
+               console.error('Error uploading');
+               alert (error);
+             }
+             else{
+               console.log("Success!");
+               console.log('uploaded file available here: '+downloadUrl);
+               imageDetails.insert({
+                   imageurl: downloadUrl,
+                   time: timeStamp,
+                   uploadedBy: currentUserId
+               });
+             }
+             });
+             uploader.set(upload);
+           }*/
 });
+
+/*Template.postBookPage.helpers({
+
+    isUploading: function () {
+        return Boolean(uploader.get());
+    },
+
+    progress: function () {
+    var upload = uploader.get();
+    if (upload)
+    return Math.round(upload.progress() * 100);
+    },
+
+    url: function () {
+
+    return imageDetails.findOne({uploadedBy: currentUserId},{sort:{ time : -1 } });
+
+    },
+
+});*/
 
 Template.findBookPage.events({
     "submit form": function (event, template) {
