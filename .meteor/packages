@@ -23,4 +23,5 @@ standard-minifier-css
 standard-minifier-js
 email
 check
-edgee:slingshot
+cfs:standard-packages
+cfs:filesystem

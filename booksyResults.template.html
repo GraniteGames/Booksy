@@ -12,6 +12,7 @@
       <th>Author</th>
       <th>ISBN</th>
       <th>Subject</th>
+      <th>Price</th>
       <th>Date Posted</th>
       <th>DocumentID</th>
       <th>Contact</th>
@@ -27,6 +28,7 @@
         <th>Author</th>
         <th>ISBN</th>
         <th>Subject</th>
+        <th>Price</th>
         <th>Date Posted</th>
         <th>document ID</th>
         <th>Contact</th>
@@ -47,6 +49,7 @@
     <td>{{bookAuthor}}</td>
     <td>{{isbn}}</td>
     <td>{{subjectTag}}</td>
+    <td>{{price}}</td>
     <td>{{dateCreated}}</td>
     <td>{{_id}}</td>
     <td><button type="button" class="btn btn-info toContact" data-toggle="modal" data-target="#myModal" data-id="{{_id}}">Contact Seller</button></td> <!-- This will pop a modal for the seller to input email-->
@@ -67,6 +70,7 @@
           <li>Book Title:{{sellerSession "sellerTitle"}}</li>
           <li>Book Author:{{sellerSession "sellerAuthor"}} </li>
           <li>ISBN:{{sellerSession "sellerIsbn"}}</li>
+          <li>Price:{{sellerSession "sellerPrice"}}</li>
         </ul>
         <fieldset class="form-group fg1">
           <label for="buyerEmail">Enter Your Email</label>

@@ -2,6 +2,7 @@
 body{
   padding-top:70px;
 }
+
 /*NAVBAR STYLES*/
 .navbar-dark{
   background-color: #64ec6f;
@@ -38,6 +39,8 @@ body{
   background-color:white;
   color:black;
 }
+
+
 /*Home Page Styles*/
 .mainPageLogo{
   text-align:center;
@@ -63,6 +66,8 @@ body{
 .toPost{
 
 }
+
+
 /*Find/Post Page Styles*/
 .divideMe{
   background-color:#64ec6f;
@@ -75,6 +80,8 @@ body{
   padding:10px;
   border-radius:10px;
 }
+
+
 /*Result page styles*/
 .tableHead{
   background-color:#64ec6f;
@@ -87,8 +94,11 @@ body{
 }
 .tableResults{
   font-weight:bold;
+  font-size:18px;
   border-bottom:1px solid #e6e6e6;
 }
+
+
 /*Thanks Styles*/
 
 .thanksMessage{

@@ -23,11 +23,20 @@ Router.route('/thanks', {
     template: 'finished',
     name: 'thanks'
 });
+Router.route('/delete', {
+    template:'deletePage',
+    name: 'delete'
+})
+Router.route('/deleteSuccess',{
+  template: 'deleteSuccess',
+  name: 'deleteSuccess'
+})
 Router.configure({
   layoutTemplate: 'main'
 
 });
 //END Routing
+
 
 //Globals
 BooksList = new Mongo.Collection("books");
@@ -93,7 +102,7 @@ Template.resultsPage.helpers({
       var buyerEmail = buyerEmail.toString();
       //Get Buyer Message
       var buyerText = $('#emailContent').val()
-      var buyerText = buyerText.toString();
+      var buyerText = buyerText.toString() + '. If you would like to delete your book from our listing, follow this link ( http://booksybeta.herokapp.com/delete ) and paste : ' + Session.get('bookID') + 'into the available field' ;
       var emailTitle = 'Booksy: Reply to your ad for: ' + Session.get("sellerTitle");
       // Call email method
       Meteor.call('sendEmail',sellerEmail, buyerEmail,emailTitle,buyerText);
@@ -107,7 +116,7 @@ Template.resultsPage.helpers({
     "click .modalClose": function(event, template)
     {
       event.preventDefault();
-      $('.modal-body').remove('p')
+      $('.modal-body').remove('p');
       $('.buyerSubmit').show();
       $('.fg1').show();
       $('.fg2').show();
@@ -126,12 +135,14 @@ Template.resultsPage.helpers({
       var sellerData = BooksList.findOne({ _id : sellerID});
       console.log(sellerData.bookTitle);
       Session.set({
+        bookID: sellerData._id,
         sellerTitle: sellerData.bookTitle,
         sellerAuthor: sellerData.bookAuthor,
         sellerIsbn : sellerData.isbn,
         sellerRegion: sellerData.region,
         sellerDatePosted: sellerData.dateCreated,
-        currentSellerEmail: sellerData.sellerEmail
+        currentSellerEmail: sellerData.sellerEmail,
+        sellerPrice: sellerData.bookPrice
       });
 
     }
@@ -151,6 +162,11 @@ Template.homePage.events({
   {
     event.preventDefault
     Router.go("/post");
+  },
+  "click .delete": function (event,template)
+  {
+    event.preventDefault();
+    Router.go("/")
   }
 });
 Template.homePage.events({
@@ -173,6 +189,8 @@ Template.postBookPage.events({
     var authorPost = event.target.bookAuthor.value;
     var isbnPost = event.target.isbn.value;
     var tagPost = event.target.tag.value;
+    var pricePost = event.target.bookPrice.value;
+
     if(isbnPost=== "")
     {
       isbnPost="N/A";
@@ -185,21 +203,21 @@ Template.postBookPage.events({
     {
       titlePost=="N/A"
     }
-    Meteor.call("addBook", regionPost,isbnPost,titlePost,authorPost,tagPost,emailPost);
+    Meteor.call("addBook", regionPost,isbnPost,titlePost,authorPost,tagPost,emailPost, pricePost);
 
     Router.go('/thanks');
     console.log("thanks page Displayed");
   },
-    "change .myFileInput": function (event,template){
+ /*   "change .myFileInput": function (event,template){
       var files= event.target.files;
       for (var i=0, ln=files.length; i < ln; i++){
         Images.insert(files[i],function(err, fileObj){
-          
+            console.log("images inserted")
         });
       }
-    },
+    },*/
 });
-  
+
 Template.findBookPage.events({
     "submit form": function (event, template) {
       event.preventDefault();
@@ -234,11 +252,34 @@ Template.findBookPage.events({
   console.log("Results page Displayed")
 }
 });
+
+Template.deletePage.events({
+  "submit form": function (event,template){
+    event.preventDefault();
+    var deleteId = event.target.deleteInput.value;
+    if (BooksList.findOne(deleteId))
+    {
+      Meteor.call("deletebook", deleteId);
+      console.log("book Removed")
+      Router.go('/deleteSuccess');
+    }
+    else{
+      $(".error").append("<p>Error: Invalid Code</p>");
+    }
+  }
+
+});
+Template.deleteSuccess.events({
+  'click .return': function (event, template){
+    event.preventDefault();
+    Router.go('/')
+  }
+})
 }
 //methods
 
 Meteor.methods({
-addBook: function  (regionPost, isbnPost, titlePost, authorPost, tagPost, emailPost)
+addBook: function  (regionPost, isbnPost, titlePost, authorPost, tagPost, emailPost, pricePost)
 {
   BooksList.insert({
     bookTitle: titlePost,
@@ -247,6 +288,7 @@ addBook: function  (regionPost, isbnPost, titlePost, authorPost, tagPost, emailP
     sellerEmail: emailPost,
     subjectTag: tagPost,
     region: regionPost,
+    price: pricePost,
     dateCreated: new Date()
   });
 },
@@ -261,6 +303,10 @@ sendEmail: function (to,fr,subject,text){
     subject: subject,
     text: text
   });
+},
+deletebook: function(id)
+{
+  BooksList.remove(id);
 }
 
 
