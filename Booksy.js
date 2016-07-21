@@ -166,7 +166,7 @@ Template.homePage.events({
   "click .delete": function (event,template)
   {
     event.preventDefault();
-    Router.go("/")
+    Router.go("/delete")
   }
 });
 Template.homePage.events({
