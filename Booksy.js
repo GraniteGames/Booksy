@@ -36,12 +36,32 @@ Router.configure({
 
 });
 //END Routing
-
+/*
+ Slingshot.fileRestrictions("myFileUploads", {
+  allowedFileTypes: ["image/png" , "image/jpeg" , "image/gif"],
+  maxSize: 10 * 1024 * 1024
+  }); */
 
 //Globals
 BooksList = new Mongo.Collection("books");
 
 if (Meteor.isClient) {
+	/*Image Uploader
+	var uploader = new Slingshot.Upload("myFileUploads");
+	
+	uploader.send(document.getElementById('input').files[0], function (error, downloadUrl) {
+		if (error) {
+			console.error('Error Uploading', uploader.xhr.response);
+			alert(error);
+			}
+		else{
+			Meteor.users.update(Meteor.userId(), {$push: {"profile.files": downloadUrl}});
+			BooksList.update(ID, {"bookPic": downloadUrl});
+			}
+		}); */
+	
+	
+	
 Template.body.onRendered( function() {
 
   });
@@ -315,4 +335,26 @@ if (Meteor.isServer) {
   Meteor.startup(function () {
    process.env.MAIL_URL="smtp://postmaster@sandbox017d063d7d684ed5af85afc1b622a6c0.mailgun.org:548426b1d23a17500b5e117414700ad2@smtp.mailgun.org:587/";
   });
+  /*
+  Slingshot.createDirective("myFileUploads", Slingshot.S3Storage, {
+  bucket: "mybucket",
+
+  acl: "public-read",
+
+  authorize: function () {
+    //Deny uploads if user is not logged in.
+    if (!this.userId) {
+      var message = "Please login before posting files";
+      throw new Meteor.Error("Login Required", message);
+    }
+
+    return true;
+  },
+
+  key: function (file) {
+    //Store file into a directory by the user's username.
+    var user = Meteor.users.findOne(this.userId);
+    return user.username + "/" + file.name;
+  }
+}); */
 }
