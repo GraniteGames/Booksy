@@ -5,14 +5,14 @@ body{
 
 /*NAVBAR STYLES*/
 .navbar-dark{
-  background-color: #64ec6f;
+  background-color: #AEE88D;
   border-bottom:none;
 }
 .navbar-header button{
   background-color: white;
 }
 .navbar-header .icon-bar{
-  background-color:#64ec6f;
+  background-color:#AEE88D;
 }
 .navbar-brand{
   color:white;
@@ -44,7 +44,7 @@ body{
 /*Home Page Styles*/
 .mainPageLogo{
   text-align:center;
-  color:#64ec6f;
+  color:#AEE88D;
   font-size:30px;
 }
 .mainPageSlogan{
@@ -70,10 +70,10 @@ body{
 
 /*Find/Post Page Styles*/
 .divideMe{
-  background-color:#64ec6f;
+  background-color:#AEE88D;
 }
 .submitButtonStyle{
-  background-color:#64ec6f;
+  background-color:#AEE88D;
   border:1px solid gray;
   font-size:22px;
   color:white;
@@ -84,7 +84,7 @@ body{
 
 /*Result page styles*/
 .tableHead{
-  background-color:#64ec6f;
+  background-color:#AEE88D;
   color:white;
   font-size:20px;
 }
